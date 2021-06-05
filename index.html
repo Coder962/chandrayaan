@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="shortcut icon" type="image/jpg" href="s.png"/>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chandrayaan Rover</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Odibee+Sans&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Odibee+Sans&family=Roboto&display=swap');
+        body {
+            background-image: url("mainbg.jpg");    
+            background-size: cover;
+        }
+        h1 {
+            font-family: 'Odibee Sans', cursive;
+            color:white;
+            font-size:3rem;
+        }
+        p {
+            font-family: 'Roboto', sans-serif;  
+            font-size:1.5rem;
+            color:white;
+        }
+        #myCanvas {
+    margin-top: 30px;
+	border-width:10px;
+	background-color: white; 
+	border-style:ridge;
+}
+    </style>
+</head>
+<body>
+    <br>
+    <center>
+        <h1>Chandrayaan Rover</h1>
+        <br>
+        <br>
+        <p>Chandrayaan-2 is the second lunar exploration mission developed by the Indian Space Research Organisation, after Chandrayaan-1. It consists of a lunar orbiter, and also included the Vikram lander, and the Pragyan lunar rover, all of which were developed in India. Unfortunately a last-minute software glitch led to the failure of the Chandrayaan 2 mission. Vikram Lander crash-landed on the moon's surface after its guidance software went kaput, according to an internal report presented to the Space Commission. But don't worry! I have cretaed a little simulation of the Chandrayaan Rover!! I hope you enjoy :D </p>
+        <br>
+        <br>
+        <canvas id="myCanvas" width="800" height="600"></canvas>
+
+    </center>
+</body>
+<script>
+    canvas = document.getElementById('myCanvas');
+    ctx = canvas.getContext("2d");
+    rover_width = 100;
+    rover_height = 90;
+    background_image = "one.jpg";
+    rover_image = "rover-removebg-preview.png";
+    rover_x = 10;
+    rover_y = 10;
+
+    function add() {
+        background_imgTag = new Image();
+        background_imgTag.onload = uploadBackground;
+        background_imgTag.src = background_image;  
+
+        rover_imgTag = new Image();
+        rover_imgTag.onload = uploadrover;
+        rover_imgTag.src = rover_image;  
+    }
+
+    function uploadBackground() {
+        ctx.drawImage(background_imgTag, 0 , 0 , canvas.width , canvas.height)
+    }
+
+    function uploadrover() {
+        ctx.drawImage(rover_imgTag, rover_x, rover_y, rover_width, rover_height);
+    }
+
+    window.addEventListener("keydown", my_keydown);
+
+    function my_keydown(e) {
+	keyPressed = e.keyCode;
+	console.log(keyPressed);
+		if(keyPressed == '38')
+		{
+			up();
+			console.log("up");
+		}
+		if(keyPressed == '40')
+		{
+			down();
+			console.log("down");
+		}
+		if(keyPressed == '37')
+		{
+			left();
+			console.log("left");
+		}
+		if(keyPressed == '39')
+		{
+			right();
+			console.log("right");
+		}
+}
+
+
+function up() {
+	if(rover_y >=0) {
+		rover_y = rover_y - 10;
+		console.log("When up arrow is pressed,  x = " + rover_x + " | y = " +rover_y);
+		 uploadBackground();
+		 uploadrover();
+	}
+}
+    
+function down() {
+	if(rover_y <=500) {
+		rover_y = rover_y + 10;
+		console.log("When down arrow is pressed,  x = " + rover_x + " | y = " +rover_y);
+		 uploadBackground();
+		 uploadrover();
+	}
+}
+
+    function left() {
+	if(rover_y >= 0) {
+		rover_x = rover_x - 10;
+		console.log("When down  arrow is pressed,  x = " + rover_x + " | y = " +rover_y);
+		 uploadBackground();
+		 uploadrover();
+	}
+}
+
+    function right() {
+	if(rover_y <= 700) {
+		rover_x = rover_x +  10;
+		console.log("When down  arrow is pressed,  x = " + rover_x + " | y = " +rover_y);
+		 uploadBackground();
+		 uploadrover();
+	}
+}
+</script>
+</html>
